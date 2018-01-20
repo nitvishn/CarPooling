@@ -1,0 +1,27 @@
+{% extends "framework.html" %}
+
+{% block body %}
+
+<form action="{{ url_for('index') }}" method="post" data-toggle="validator" role="form">
+    <div class="container">
+        <div class="form-group">
+            <input autocomplete="on" class="form-control" name="destination" placeholder="Area of Destination" style="width:25%;margin:auto" type="text" required/>
+            <div class="help-block with-errors">Enter as listed on Google Maps.</div>
+        </div>
+
+        <div class="form-group">
+            <input id="TOA" autocomplete="on" class="form-control" name="TOA" placeholder="Time of Arrival" type="time" style="width:25%;margin:auto" required/>
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <div class="form-group">
+            <font color="#a94442"><p>{{errors}}</p></font>
+        </div>
+
+        <div class="clearfix">
+            <button type="submit">Find A Ride</button>
+        </div>
+        </fieldset>
+    </div>
+</form>
+{% endblock %}
