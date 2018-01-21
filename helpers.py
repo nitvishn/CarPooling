@@ -125,7 +125,7 @@ def timeDifference(time1, time2):
 	minutesdelta=int(minutes[0])-int(minutes[1])
 	return abs(hoursdelta*60 + minutesdelta)
 
-def getViableDict(hosts, riders, full, ignoreDistance=7):
+def getViableDict(hosts, riders, full, ignoreDistance=3):
 
 	def ignore(host, rider):
 		seq=[Location(host['origin_lat'], host['origin_long']), Location(rider['destinationLat'], rider['destinationLong']), Location(host['destinationLat'], host['destinationLong'])]

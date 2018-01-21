@@ -51,12 +51,11 @@ def index():
 		if ridedata==[]:
 			pooldata=db.execute("SELECT * FROM pools WHERE userid=:id", id=user['id'])
 			person_type='rider'
-			if not pooldata:
+			if pooldata==[]:
 				pooldata=db.execute("SELECT * FROM pools WHERE ownerId=:id", id=user['id'])
-			if not pooldata:
-				return render_template("index.html", user=user, listed=False)
-			else:
-				person_type="giver"
+				person_type='giver'
+				if pooldata==[]:
+					return render_template("index.html", user=user, listed=False)
 
 			if person_type=="rider":
 				info=idDict[db.execute("SELECT * FROM pools WHERE userid=:id", id=user['id'])[0]['ownerId']]

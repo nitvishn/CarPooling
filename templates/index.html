@@ -43,11 +43,11 @@ Index
             <font color="#a94442"><p align="center">You are still queued for a ride. Please wait till we find you a ride.</p></font>
         </div>
 
-        {% if finalised == False %}
-        <div class="container">
-            <button class="form-control" value="withdraw" name='submit' type="submit" style="width:15%;margin:auto">Unlist yourself</button>
-        </div>
-        {% endif %}
+            {% if finalised == False %}
+            <div class="container">
+                <button class="form-control" value="withdraw" name='submit' type="submit" style="width:15%;margin:auto">Unlist yourself</button>
+            </div>
+            {% endif %}
 
         {% else %}
 
@@ -56,11 +56,11 @@ Index
             <p align="center">Your host's contact: {{ info['contact'] }}</p>
         </div>
 
-        {% if finalised == False %}
-        <div class="container">
-            <button class="form-control" value="withdraw" name='submit' type="submit" style="width:15%;margin:auto">Unlist yourself</button>
-        </div>
-        {% endif %}
+            {% if finalised == False %}
+            <div class="container">
+                <button class="form-control" value="withdraw" name='submit' type="submit" style="width:15%;margin:auto">Unlist yourself</button>
+            </div>
+            {% endif %}
 
         {% endif %}
 
