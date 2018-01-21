@@ -70,7 +70,6 @@ pycparser==2.18
 pyflakes==1.6.0
 pygame==1.9.3
 Pygments==2.2.0
-pyjs==0.8.2
 pyOpenSSL==17.3.0
 pyparsing==2.2.0
 PyQt5==5.9.2
