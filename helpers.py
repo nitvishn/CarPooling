@@ -1,9 +1,5 @@
-import csv
-import urllib.request
-import itertools
 import math
 from geopy.geocoders import Nominatim
-from datetime import datetime
 import requests
 from copy import deepcopy
 
