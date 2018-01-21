@@ -214,3 +214,6 @@ def giveride():
 
 		db.execute("INSERT INTO rides (id, carAvailable, carsize, destinationLat, destinationLong, timeOfArrival) VALUES (:id, :carAvailable, :carsize, :lat, :long, :TOA)", id=user['id'], carAvailable='Y', carsize=int(size), lat=float(lat), long=float(long), TOA=request.form.get("TOA"))
 		return redirect(url_for("index"))
+
+if __name__ == "__main__":
+	app.run()
