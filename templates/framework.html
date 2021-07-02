@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta content="initial-scale=1, width=device-width" name="viewport"/>
+
+    <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static', filename='validator.js')}}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<title>
+    {% block title %}
+    {% endblock %}
+</title>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Green Wheels</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            {% if session.user_id %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">{{ user['first']+' '+user['last'] }}</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+            {% else %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% block body %}
+    {% endblock %}
+</body>
+
+</html>

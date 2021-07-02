@@ -1,0 +1,103 @@
+{% extends "framework.html" %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block body %}
+
+{% if listed == False %}
+
+<form action="{{ url_for('index') }}" method="post" data-toggle="validator" name="findride">
+    <input name="purpose" type="hidden" value="findride">
+    <div class="container">
+        <button class="form-control" name="submit" value="findride" type="submit" style="width:10%;margin:auto">Find a Ride</button>
+    </div>
+</form>
+
+<form action="{{ url_for('index') }}" method="post" data-toggle="validator" name="giveride">
+    <input name="purpose" type="hidden" value="giveride">
+    <div class="container">
+        <button class="form-control" name="submit" value="giveride" type="submit" style="width:10%;margin:auto">List yourself</button>
+    </div>
+</form>
+
+{% else %}
+<form action="{{ url_for('index') }}" method="post" data-toggle="validator" name="withdraw">
+
+    {% if finalised==False %}
+    <div class="form-group">
+        <p align="center">[unfinalised, this is subject to change]</p>
+    </div>
+    {% else %}
+    <div class="form-group">
+        <p align="center">[finalised]</p>
+    </div>
+    {% endif %}
+
+    {% if person_type=="rider" %}
+
+        {% if info == None %}
+
+        <div class="form-group">
+            <font color="#a94442"><p align="center">You are still queued for a ride. Please wait till we find you a ride.</p></font>
+        </div>
+
+            {% if finalised == False %}
+            <div class="container">
+                <button class="form-control" value="withdraw" name='submit' type="submit" style="width:15%;margin:auto">Unlist yourself</button>
+            </div>
+            {% endif %}
+
+        {% else %}
+
+        <div class="form-group">
+            <p align="center">Your host: {{ info['first'] }}</p>
+            <p align="center">Your host's contact: {{ info['contact'] }}</p>
+        </div>
+
+            {% if finalised == False %}
+            <div class="container">
+                <button class="form-control" value="withdraw" name='submit' type="submit" style="width:15%;margin:auto">Unlist yourself</button>
+            </div>
+            {% endif %}
+
+        {% endif %}
+
+    {% else %}
+
+        {% if info == None %}
+        <div class="form-group">
+            <font color="#a94442"><p align="center">No one has been allocated to your ride yet. Please wait before finalising.</p></font>
+        </div>
+        {% else %}
+
+        <div class="form-group">
+            <p align="center">People in your car:</p>
+            <ul>
+                {% for row in info %}
+                <li align="center"><strong>{{ row['first'] + ' ' + row['last']}}</strong>, reachable at {{row['contact']}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if finalised==False %}
+        <div class="container">
+            <button class="form-control" value="finalise" name="submit" style="width:15%;margin:auto">Finalise</button>
+        </div>
+        <div class="container">
+            <button class="form-control" value="withdraw" name='submit' type="submit" style="width:15%;margin:auto">Unlist yourself</button>
+        </div>
+        {% else %}
+        <div class="container">
+            <button class="form-control" value="complete" name='submit' type="submit" style="width:15%;margin:auto">Complete Ride</button>
+        </div>
+        {% endif %}
+
+
+    {% endif %}
+</form>
+
+{% endif %}
+
+{% endblock %}
